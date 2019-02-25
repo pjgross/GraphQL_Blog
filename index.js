@@ -1,18 +1,5 @@
-const { ApolloServer, gql } = require('apollo-server');
-
-// This is a (sample) collection of books we'll be able to query
-// the GraphQL server for.  A more complete example might fetch
-// from an existing data source like a REST API or database.
-const books = [
-  {
-    title: 'Harry Potter and the Chamber of Secrets',
-    author: 'J.K. Rowling',
-  },
-  {
-    title: 'Jurassic Park',
-    author: 'Michael Crichton',
-  },
-];
+import { ApolloServer, gql } from 'apollo-server'
+import axios from 'axios'
 
 // Type definitions define the "shape" of your data and specify
 // which ways the data can be fetched from the GraphQL server.
@@ -21,8 +8,14 @@ const typeDefs = gql`
 
   # This "Book" type can be used in other type declarations.
   type Book {
-    title: String
-    author: String
+    id: String!
+    isbn: String!
+    title: String!
+    subtitle: String
+    author: String!
+    publisher: String
+    pages: Int
+    description: String
   }
 
   # The "Query" type is the root of all GraphQL queries.
@@ -36,9 +29,9 @@ const typeDefs = gql`
 // schema.  We'll retrieve books from the "books" array above.
 const resolvers = {
   Query: {
-    books: () => books,
-  },
-};
+    books: () => axios.get('http://localhost:3000/books').then(res => res.data)
+  }
+}
 
 // In the most basic sense, the ApolloServer can be started
 // by passing type definitions (typeDefs) and the resolvers
