@@ -79,6 +79,20 @@
       "publisherId": "2",
       "pages": 538,
       "description": "Design and build Web APIs for a broad range of clients—including browsers and mobile devices—that can adapt to change over time. This practical, hands-on guide takes you through the theory and tools you need to build evolvable HTTP services with Microsoft’s ASP.NET Web API framework. In the process, you’ll learn how design and implement a real-world Web API."
+    },
+    {
+      "isbn": "hhjghjhhggssc2yy65ggjh",
+      "title": "Created by testing5",
+      "author": "Peter Gross",
+      "publisherId": "1",
+      "id": "KrtLRZg"
+    },
+    {
+      "isbn": "hhjghjhhggssc2yy65ggjh",
+      "title": "Created by testing updated2",
+      "author": "Fred",
+      "publisherId": "2",
+      "id": "vpG3WEj"
     }
   ],
   "publishers": [
@@ -89,6 +103,6 @@
     {
       "id": "2",
       "name": "O'Reilly Media"
-    }  
+    }
   ]
 }
