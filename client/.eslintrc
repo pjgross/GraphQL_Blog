@@ -1,0 +1,19 @@
+{
+  "extends": ["airbnb"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": "off",
+    "import/newline-after-import": "off",
+    "comma-dangle": "off",
+    "prefer-template": "off",
+    "import/no-extraneous-dependencies": "off",
+    "semi":"off",
+    "react/prefer-stateless-function": "off",
+    "no-shadow":"off",
+    "jsx-a11y/alt-text":"off",
+    "object-curly-newline":"off"
+  }
+}
