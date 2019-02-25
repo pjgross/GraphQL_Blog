@@ -1,0 +1,15 @@
+type User {
+  id: ID! @unique
+  name: String!
+  email: String! @unique
+  password: String!
+  updatedAt: DateTime!
+  createdAt: DateTime!
+  likes: [Booklike] @relation(name: "LikeToUser", onDelete: CASCADE)
+}
+
+type Booklike {
+  id: ID! @unique
+  user: User! @relation(name: "LikeToUser", onDelete: SET_NULL)
+  bookId: String!
+}
