@@ -31,11 +31,13 @@ const Mutation = {
   async deleteLike(parent, { bookId }, {prisma, request}, info) {
     // get the user from the http header of the request
     const userId = getUserId(request)
+    console.log(userId)
     //find the record for the user and bookid to get the record id
     const record = await prisma.query.booklikes({
       where: {bookId: bookId, user: { id: userId }}
     }) 
-    return prisma.mutation.deleteBooklike({where: {id: record.id}},info)
+    console.log(record)
+    return prisma.mutation.deleteBooklike({where: {id: record[0].id}},info)
   },
   async createUser(parent, args, {prisma}, info) {
 

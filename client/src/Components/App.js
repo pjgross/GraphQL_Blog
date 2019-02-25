@@ -1,45 +1,57 @@
-import '../../assets/css/style.css'
-import React, { Component } from 'react';
+import './App.css'
+import React, { Component } from 'react'
+import posed from 'react-pose'
+import { Query } from 'react-apollo'
+import { GET_ALL_BOOKS } from '../queries'
+import Spinner from './Spinner'
+import BookItem from './Book/BookItem'
 
-const posts = [{
-  id: 2,
-  text: 'Lorem ipsum',
-  user: {
-    username: 'Test User'
+const BookList = posed.ul({
+  shown: {
+    x: '0%',
+    staggerChildren: 100
+  },
+  hidden: {
+    x: '-100%'
   }
-},
-{
-  id: 1,
-  text: 'Lorem ipsum',
-  user: {
-    username: 'Test User 2'
-  }
-}]
+});
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { posts };
+  state = { on: false }
+
+  componentDidMount() {
+    setTimeout(this.slideIn, 200)
+  }
+
+  slideIn = () => {
+    // eslint-disable-next-line react/no-access-state-in-setstate
+    this.setState({ on: !this.state.on })
   }
 
   render() {
-    const { posts } = this.state;
+    const { books } = this.state;
 
     return (
-      <div className="container">
-        <div className="feed">
-          {posts.map(post => (
-            <div key={post.id} className="post">
-              <div className="header">
-                <h2>{post.user.username}</h2>
-              </div>
-              <p className="content">
-                {post.text}
-              </p>
-            </div>
-          ))}
-        </div>
+      <div className="App">
+        <h1 className="main-title">
+          Find Books You <strong>Love</strong>
+        </h1>
+        <Query query={GET_ALL_BOOKS}>
+          {({ data, loading, error }) => {
+            if (loading) return <Spinner />;
+            if (error) return <div>Error</div>;
+            // console.log(data);
+            const { on } = this.state;
+            return (
+              <BookList pose={on ? 'shown' : 'hidden'} className="cards">
+                {data.books.map(book => (
+                  <BookItem key={book.id} {...book} />
+                ))}
+              </BookList>
+            );
+          }}
+        </Query>
       </div>
-    )
+    );
   }
 }

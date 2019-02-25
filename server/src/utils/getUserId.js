@@ -1,10 +1,14 @@
 import jwt from 'jsonwebtoken'
+import { isNull } from 'util';
 const getUserId = (request, requireAuth = true) => {
-  // muatations & queries use http and subscriptions use websockets so check is http header exists
+  // mutations & queries use http and subscriptions use websockets so check is http header exists
   const header = request.req ? request.req.headers.authorization : req.connection.context.Authorization
 
   if (header) {
     const token = header.replace('Bearer ','')
+    if (isNull(token) || token == 'null' ){
+      return null
+    }
     // this throws an error if it does not verify
     const decoded = jwt.verify(token, process.env.JWT_SECRET)
     return decoded.userId

@@ -13,10 +13,14 @@ type Book {
   author: String!
   "Publisher if known"
   publisher: Publisher
+  "where the local book cover is stored"
+  imageUrl: String
   "How many pages if known"
   pages: Int
   "What the book is about"
   description: String
+  "who likes the book"
+  likedBy: [User]
 }
 # [] means it returns a list of the object type in this case Book
 type Publisher {
@@ -28,8 +32,9 @@ type Publisher {
 # (x: yyy) are the parameters passed into the function
 type Query {
   users(query: String, first: Int, skip: Int, after: String, orderBy: UserOrderByInput): [User!]!
-  books: [Book]
-  book(id: ID!): Book
+  getCurrentUser: User!
+  books: [Book]!
+  book(id: ID!): Book!
   publisher(id: ID!): Publisher
   publishers: [Publisher]
   booklikes(query: String, first: Int, skip: Int, after: String, orderBy: UserOrderByInput): [Booklike!]!
@@ -78,6 +83,7 @@ input CreateBookInput {
   publisherId: ID!
   pages: Int
   description: String
+  imageUrl: String
 }
 # publisherId has to match the data source not the schema definition
 input UpdateBookInput {
@@ -89,6 +95,7 @@ input UpdateBookInput {
   publisherId: ID
   pages: Int
   description: String
+  imageUrl: String
 }
 
 type User {

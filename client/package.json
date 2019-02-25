@@ -6,13 +6,28 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "webpack-dev-server --devtool inline-source-map --hot --config webpack.client.config.js",
-    "client:build": "webpack --config webpack.client.build.config.js"
+    "client:build": "webpack --config webpack.client.build.config.js",
+    "stats": "webpack --profile --json --config webpack.client.build.config.js > stats.json",
+    "analyze": "webpack-bundle-analyzer stats.json"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
+    "apollo-cache-inmemory": "^1.4.3",
+    "apollo-client": "^2.4.13",
+    "apollo-link": "^1.2.8",
+    "apollo-link-error": "^1.1.7",
+    "apollo-link-http": "^1.5.11",
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1",
     "react": "^16.8.2",
-    "react-dom": "^16.8.2"
+    "react-apollo": "^2.4.1",
+    "react-ckeditor-component": "^1.1.0",
+    "react-dom": "^16.8.2",
+    "react-pose": "^4.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-spinners": "^0.5.1"
   },
   "devDependencies": {
     "@babel/core": "^7.3.3",

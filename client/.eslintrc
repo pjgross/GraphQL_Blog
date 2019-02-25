@@ -1,9 +1,11 @@
 {
   "extends": ["airbnb"],
   "env": {
+    "es6": true,
     "browser": true,
     "node": true
   },
+  "parser":"babel-eslint",
   "rules": {
     "react/jsx-filename-extension": "off",
     "import/newline-after-import": "off",
@@ -14,6 +16,20 @@
     "react/prefer-stateless-function": "off",
     "no-shadow":"off",
     "jsx-a11y/alt-text":"off",
-    "object-curly-newline":"off"
+    "object-curly-newline":"off",
+    "implicit-arrow-linebreak":"off",
+    "no-console":"off",
+    "react/prop-types":"off",
+    "react/jsx-one-expression-per-line":"off",
+    "react/jsx-curly-brace-presence":"off",
+    "import/prefer-default-export":"off",
+    "react/destructuring-assignment":"off",
+    "no-unused-vars":"off",
+    "arrow-body-style":"off",
+    "react/button-has-type":"off",
+    "react/no-access-state-in-setstate":"off",
+    "jsx-a11y/label-has-associated-control":"off",
+    "jsx-a11y/label-has-for":"off",
+    "max-len":"off"
   }
 }
