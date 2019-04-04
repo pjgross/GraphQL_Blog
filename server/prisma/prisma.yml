@@ -3,7 +3,7 @@ datamodel: datamodel.prisma
 # secret: thisismysupersecrettext
 generate:
   - generator: graphql-schema
-    output: ../src/generated/
+    output: ../src/generated/prisma.graphql
 
 # Ensures Prisma client is re-generated after a datamodel change.
 hooks:
